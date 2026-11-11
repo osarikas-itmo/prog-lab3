@@ -1,7 +1,7 @@
 package enums;
 
 public enum CropType {
-    WHEAT("пшеница"), BARLEY("ячмень");
+    RICE("рис"), BARLEY("ячмень");
 
     private final String name;
 

@@ -33,7 +33,7 @@ classDiagram
     }
     class CropType {
         <<enumeration>>
-        WHEAT
+        RICE
         BARLEY
     }
     class GrainState {

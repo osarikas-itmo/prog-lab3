@@ -29,9 +29,9 @@ public class Main {
         Robinson robinson = new Robinson("Робинзон", farm);
 
         try {
-            farm.getBarn().store(new Grain(CropType.WHEAT, 10, GrainState.SEED));
+            farm.getBarn().store(new Grain(CropType.RICE, 10, GrainState.SEED));
             farm.getBarn().store(new Grain(CropType.BARLEY, 8, GrainState.SEED));
-            CropType[] crops = {CropType.WHEAT, CropType.BARLEY};
+            CropType[] crops = {CropType.RICE, CropType.BARLEY};
             double[] seeds = {10, 8};
             System.out.println("Начало сезона. Урожайность полей зависит от погоды.");
             for (int i = 0; i < farm.getFields().size(); i++) {
@@ -78,8 +78,8 @@ public class Main {
             }
             System.out.println(farm.getBarn());
 
-            robinson.thresh(farm.getBarn(), CropType.WHEAT,
-                    farm.getBarn().getAmount(CropType.WHEAT, GrainState.IN_EARS));
+            robinson.thresh(farm.getBarn(), CropType.RICE,
+                    farm.getBarn().getAmount(CropType.RICE, GrainState.IN_EARS));
 
             for (CropType crop : crops) {
                 double ears = farm.getBarn().getAmount(crop, GrainState.IN_EARS);
@@ -88,13 +88,13 @@ public class Main {
             System.out.println("Обмолот завершён. " + farm.getBarn());
 
             try {
-                robinson.consumeGrain(farm.getBarn(), CropType.WHEAT,
-                        farm.getBarn().getAmount(CropType.WHEAT, GrainState.THRESHED) + 1);
+                robinson.consumeGrain(farm.getBarn(), CropType.RICE,
+                        farm.getBarn().getAmount(CropType.RICE, GrainState.THRESHED) + 1);
             } catch (InsufficientGrainException e) {
                 System.out.println(e.getMessage() + ". Робинзон уменьшил порцию.");
             }
             double dailyConsumption = 0.25 + random.nextDouble() * 0.1;
-            robinson.consumeGrain(farm.getBarn(), CropType.WHEAT, dailyConsumption);
+            robinson.consumeGrain(farm.getBarn(), CropType.RICE, dailyConsumption);
             System.out.printf("За день съедено %.2f кг. %s%n",
                     robinson.getConsumedGrain(), farm.getBarn());
 
@@ -107,7 +107,7 @@ public class Main {
                 System.out.printf("До выполнения годового плана не хватает %.2f кг: потребуется ещё урожай.%n",
                         plan.totalRequired() - available);
             }
-            if (farm.getBarn().getAmount(CropType.WHEAT, GrainState.THRESHED) >= 10
+            if (farm.getBarn().getAmount(CropType.RICE, GrainState.THRESHED) >= 10
                     && farm.getBarn().getAmount(CropType.BARLEY, GrainState.THRESHED) >= 8) {
                 for (int i = 0; i < farm.getFields().size(); i++) {
                     Grain seed = farm.getBarn().retrieve(crops[i], GrainState.THRESHED, seeds[i]);
