@@ -1,0 +1,16 @@
+# В репозиторий входят только исходники, объектная модель и инструкция.
+/*
+!/.gitignore
+!/README.md
+!/src/
+!/docs/
+/docs/*
+!/docs/object-model.md
+
+# Результаты компиляции и настройки IDE.
+*.class
+*.iml
+.idea/
+.vscode/
+out/
+bin/
